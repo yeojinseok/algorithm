@@ -1,0 +1,15 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  const fs = require('fs')
+  const filePath =
+    process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
+
+  let text = fs
+    .readFileSync(filePath)
+    .toString()
+    .toLowerCase()
+    .replace(/[^0-9]/g, '')
+  console.log(text)
+})

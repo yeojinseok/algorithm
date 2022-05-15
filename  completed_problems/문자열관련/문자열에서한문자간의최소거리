@@ -1,0 +1,40 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  const fs = require('fs')
+  const filePath =
+    process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
+
+  let text = fs
+    .readFileSync(filePath)
+    .toString()
+    .toLowerCase()
+    .replace(/[^0-9]/g, '')
+
+  solution('teachermode', 'e')
+
+  function solution(str, t) {
+    let answer = []
+    let p = 1000
+    for (let x of str) {
+      if (x === t) {
+        p = 0
+        answer.push(p)
+      } else {
+        answer.push(++p)
+      }
+    }
+    p = 1000
+    for (let i = str.length - 1; i >= 0; i--) {
+      if (str[i] === t) {
+        p = 0
+        answer[i] = p
+      } else {
+        p++
+        answer[i] = Math.min(answer[i], p)
+      }
+    }
+    console.log(answer)
+  }
+})

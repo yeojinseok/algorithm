@@ -1,0 +1,18 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  const fs = require('fs')
+  const filePath =
+    process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
+
+  let text = fs.readFileSync(filePath).toString().toLowerCase()
+
+  let answer = ''
+
+  let reverse = text.split('').reverse().join('')
+  console.log(text, reverse)
+  if (text === reverse) answer = 'YES'
+  else answer = 'NO'
+  console.log(answer)
+})

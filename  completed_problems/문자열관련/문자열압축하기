@@ -1,0 +1,32 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  const fs = require('fs')
+  const filePath =
+    process.platform === 'linux' ? '/dev/stdin' : __dirname + '/input.txt'
+
+  let text = fs
+    .readFileSync(filePath)
+    .toString()
+    .toLowerCase()
+    .replace(/[^0-9]/g, '')
+
+  solution('kkhssssssse')
+
+  function solution(str) {
+    let count = 1
+    let answer = []
+    for (let x = 0; x <= str.length - 1; x++) {
+      if (str[x] === str[x + 1]) {
+        count++
+      } else {
+        answer.push(str[x])
+        answer.push(count)
+        count = 1
+      }
+    }
+    let qb = answer.join('').replace(/[1]/g, '')
+    console.log(qb)
+  }
+})
