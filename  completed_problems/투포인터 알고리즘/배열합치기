@@ -1,0 +1,35 @@
+
+  let a= [1,2,21]
+  let b=[0,3,6,7,9]
+  console.log(solution(a,b))
+
+  function solution(arr1,arr2){
+    let answer =[];
+    let n=0,m=0;
+    while(true){
+
+        if(arr1[n]<arr2[m])
+        { answer.push(arr1[n])
+            n++
+            if(n>=arr1.length){
+              arr2.slice(m,).map(data=>answer.push(data))
+                break;
+            }
+        }
+        else{
+            answer.push(arr2[m])
+            m++
+            if(m>=arr2.length){
+              arr1.slice(n,).map(data=>answer.push(data))
+                break;
+            }
+        }
+
+
+
+    }
+
+    return answer;
+
+  }
+
