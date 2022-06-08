@@ -2,30 +2,25 @@ const express = require('express')
 const app = express()
 
 const server = app.listen(3001, () => {
+  let str = 'BACBACCACCBDEDE'
 
-  let a= [1,3,9,5,2]
-  let b=[3,2,5,7,8]
-  console.log(solution(a,b))
+  console.log(solution(str))
 
-  function solution(arr1,arr2){
-   let answer =[]
-   arr1.sort((a,b)=>a-b)
-   arr2.sort((a,b)=>a-b)
-   let n=m=0;
-    while(n<arr1.length && m<arr2.length){
-      if(arr1[n]<arr2[m]){
-        n++
-      }else if(arr1[n]>arr2[m]){
-        m++
-      }
-      else if(arr1[n]==arr2[m]){
-        answer.push(arr1[n])
-        n++
-        m++
+  function solution(str) {
+    let answer
+    let st = new Map()
+    for (let x of str) {
+      if (st.has(x)) st.set(x, st.get(x) + 1)
+      else st.set(x, 1)
+    }
+    let max = Number.MIN_SAFE_INTEGER
+    for (let [key, val] of st) {
+      if (max < val) {
+        max = val
+        answer = key
       }
     }
-    return answer;
 
+    return answer
   }
-
 })
