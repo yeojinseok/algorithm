@@ -1,0 +1,21 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  let str = '(((()(()()))(())()))(()())'
+
+  console.log(solution(10, 3))
+  function solution(n, k) {
+    let answer
+
+    let queue = Array.from({ length: n }, (v, i) => i + 1)
+    while (queue.length > 1) {
+      for (let i = 1; i < k; i++) queue.push(queue.shift())
+      queue.shift()
+    }
+    console.log(queue)
+    answer = queue.pop()
+
+    return answer
+  }
+})

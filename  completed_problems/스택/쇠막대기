@@ -1,0 +1,50 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  let str = '(((()(()()))(())()))(()())'
+
+  console.log(solution(str))
+
+  // function solution(str) {
+  //   let answer = 0
+  //   let count = 0
+  //   let stack = []
+  //   for (let i = 0; i < str.length; i++) {
+  //     stack.push(str[i])
+
+  //     if (str[i] == ')' && str[i - 1] == '(') {
+  //       count--
+  //       while (stack.pop() !== '(');
+  //       answer += count * 2 + (stack.length - count)
+  //       console.log(answer)
+  //       count = 0
+  //     } else if (str[i] == ')') {
+  //       while (stack.pop() !== '(');
+  //     }
+  //     if (str[i] == '(') {
+  //       count++
+  //     }
+  //   }
+  //   return answer
+  // }
+
+  function solution(str) {
+    let answer = 0
+    let stack = []
+    for (let i = 0; i < str.length; i++) {
+      stack.push(str[i])
+
+      if (str[i] == ')' && str[i - 1] == '(') {
+        while (stack.pop() !== '(');
+        answer += stack.length
+        console.log(answer)
+        count = 0
+      } else if (str[i] == ')') {
+        while (stack.pop() !== '(');
+        answer++
+      }
+    }
+    return answer
+  }
+})
