@@ -1,0 +1,19 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  console.log(solution(11))
+  function solution(number) {
+    let answer = []
+
+    divide(number, answer)
+    function divide(n) {
+      if (n == 0) return
+      else {
+        divide(Math.floor(n / 2))
+        answer.push(n % 2)
+      }
+    }
+    return answer.join('')
+  }
+})
