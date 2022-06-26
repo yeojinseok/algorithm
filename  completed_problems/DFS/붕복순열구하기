@@ -1,0 +1,24 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  console.log(solution(3, 2))
+  function solution(n, m) {
+    let answer = []
+    let tmp = Array.from({ length: m }, () => 0)
+    function dfs(i) {
+      if (i == m) {
+        answer.push(tmp.slice())
+      } else {
+        for (let x = 1; x <= n; x++) {
+          tmp[i] = x
+          dfs(i + 1)
+        }
+      }
+    }
+    dfs(0)
+    answer.push(answer.length)
+    // console.log(answer)
+    return answer
+  }
+})

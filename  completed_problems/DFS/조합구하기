@@ -1,0 +1,24 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  console.log(solution(2, 6))
+  function solution(count, numbers) {
+    let answer = []
+    let tmp = Array.from({ length: count }, () => 0)
+
+    function dfs(L, start) {
+      if (L == count) {
+        let str = tmp.join('')
+        answer.push(str)
+      } else {
+        for (let x = start; x <= numbers; x++) {
+          tmp[L] = x
+          dfs(L + 1, x + 1)
+        }
+      }
+    }
+    dfs(0, 1)
+    return answer
+  }
+})

@@ -1,0 +1,30 @@
+const express = require('express')
+const app = express()
+
+const server = app.listen(3001, () => {
+  console.log(solution(2, [3, 6, 9]))
+  function solution(count, numbers) {
+    let answer = []
+    let ch = Array.from({ length: numbers.length }, () => 0)
+    let tmp = Array.from({ length: count }, () => 0)
+
+    function dfs(i) {
+      if (i == count) {
+        console.log(tmp.slice())
+      } else {
+        for (let x = 0; x < numbers.length; x++) {
+          if (ch[x] === 0) {
+            ch[x] = 1
+            tmp[i] = numbers[x]
+            dfs(i + 1)
+            ch[x] = 0
+          }
+        }
+      }
+    }
+    dfs(0)
+    return answer
+  }
+})
+
+// ch
